@@ -11,12 +11,8 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: [
-        "http://localhost:5173",
-        "https://assignment1tongxiao.netlify.app",
-        "https://a5--assignment1tongxiao.netlify.app"
-    ]
-}));
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+})); 
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
   resave: false,
@@ -27,7 +23,6 @@ if (process.env.SERVER_ENV !== "development") {
   sessionOptions.cookie = {
     sameSite: "none",
     secure: true,
-    domain: process.env.SERVER_URL,
   };
 }
 app.use(
