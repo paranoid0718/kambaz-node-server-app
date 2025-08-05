@@ -9,9 +9,20 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://assignment1tongxiao.netlify.app",
+  "https://a5--assignment1tongxiao.netlify.app",
+];
 app.use(cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
 })); 
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
