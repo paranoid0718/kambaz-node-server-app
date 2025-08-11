@@ -11,12 +11,6 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import mongoose from "mongoose";
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
 mongoose.connect(CONNECTION_STRING)
-  .then(() => {
-    console.log("✅ Connected to MongoDB at", CONNECTION_STRING);
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err?.message || err);
-  });
 const app = express();
 app.use(cors({
     credentials: true,
