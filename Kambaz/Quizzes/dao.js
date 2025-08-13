@@ -16,3 +16,16 @@ export const updateQuiz = (qid, updates) =>
 
 export const deleteQuiz = (qid) => model.deleteOne({ _id: qid });
 
+export const updateQuizPoints = async (quizId, points) => {
+  return await model.updateOne(
+    { _id: String(quizId) },
+    { $set: { points } }
+  );
+};
+
+export const updateQuizQuestionNumber = async (quizId, questionNumber) => {
+  return await model.updateOne(
+    { _id: String(quizId) },
+    { $set: { questionNumber } }
+  );
+};

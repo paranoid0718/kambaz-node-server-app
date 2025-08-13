@@ -16,6 +16,7 @@ const schema = new mongoose.Schema(
       enum: ["QUIZZES", "EXAMS", "ASSIGNMENTS", "PROJECT"],
       default: "QUIZZES",
     },
+    questionNumber:Number,
     published: { type: Boolean, default: false },
     points: { type: Number, default: 0 },
     shuffleAnswers: { type: Boolean, default: true },
