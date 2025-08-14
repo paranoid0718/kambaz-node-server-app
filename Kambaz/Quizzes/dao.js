@@ -14,6 +14,9 @@ export const findQuizById = (qid) => model.findById(qid);
 export const updateQuiz = (qid, updates) =>
   model.updateOne({ _id: qid }, { $set: updates });
 
+export const publishQuiz = (qid) =>
+  model.updateOne({ _id: qid }, { $set: { published: true } });
+
 export const deleteQuiz = (qid) => model.deleteOne({ _id: qid });
 
 export const updateQuizPoints = async (quizId, points) => {

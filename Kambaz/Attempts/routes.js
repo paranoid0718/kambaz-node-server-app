@@ -17,10 +17,14 @@ export default function AttemptRoutes(app) {
         const { attemptId } = req.params;
         const attempt = await attemptsDao.findAttemptById(attemptId);
         if (attempt) {
-            console.log(attempt.toObject());
             res.json(attempt.toObject());
         } else {
             res.status(404).send("Attempt not found");
         }
+    });
+    app.get("/api/attempts/quiz/:quizId/user/:userId/attempts", async (req, res) => {
+        const { quizId, userId } = req.params;
+        const attempts = await attemptsDao.findAttemptsForQuiz(quizId, userId);
+        res.json(attempts);
     });
 }
