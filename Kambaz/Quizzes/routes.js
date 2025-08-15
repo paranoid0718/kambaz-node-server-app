@@ -49,7 +49,11 @@ export default function QuizRoutes(app) {
   app.get("/api/quizzes/:quizId/user/:userId/attempts", async (req, res) => {
     const { quizId, userId } = req.params;
     const attempts = await quizDao.findAttemptsForQuiz(quizId, userId);
-    console.log(attempts);
     res.json(attempts);
+  });
+  app.get("/api/quizzes/:qid", async (req, res) => {
+    const { qid } = req.params;
+    const quiz = await quizDao.findQuizById(qid);
+    res.json(quiz);
   });
 }
