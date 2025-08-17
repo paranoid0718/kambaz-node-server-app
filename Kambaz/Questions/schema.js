@@ -5,6 +5,7 @@ const QuestionSchema = new mongoose.Schema(
     quizId: { type: String, ref: "QuizModel", required: true, index: true },
     type: { type: String, enum: ["MULTIPLE_CHOICE", "TRUE_FALSE", "FILL_IN_BLANK"], required: true },
     title: { type: String, required: true },
+    fields: { type: Number, required: true },
     points: { type: Number, default: 0, min: 0 },
     choices: [
       {
@@ -13,7 +14,7 @@ const QuestionSchema = new mongoose.Schema(
         isCorrect: Boolean,
       }
     ],
-    answer: [String],
+    answer: [[String]],
   },
   { collection: "questions", timestamps: true }
 );
