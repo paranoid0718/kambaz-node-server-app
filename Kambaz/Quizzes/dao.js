@@ -2,7 +2,7 @@ import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const findQuizzesForCourse = (courseId) =>
-  model.find({ course: courseId });
+  model.find({ course: courseId }).sort({ availableDate: 1 });;
 
 export function createQuiz(quiz) {
   const newQuiz = { ...quiz, _id: uuidv4() };
